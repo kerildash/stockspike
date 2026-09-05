@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+// Don't mind it's localhost here.
+// URI to API will be changed when backend will be hosted.
+// Now the frontend is deployed just for tests.
 const api = "https://localhost:7026/api";
 
 export interface ICompanySearch {

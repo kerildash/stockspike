@@ -11,7 +11,7 @@ export const Navbar: FC = () => {
                         to="/"
                         className="text-2xl font-bold text-white mr-12 whitespace-nowrap transition-colors duration-200 hover:text-gray-300"
                     >
-                        stock📈spike
+                        StockSpike
                     </Link>
                     <Link
                         to="/search"
