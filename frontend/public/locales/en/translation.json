@@ -13,6 +13,9 @@
             "contactProposal2": "and tell about the error"
         }
     },
+    "languageSwitcher": {
+        "label": "Select language"
+    },
     "login": {
         "title": "Log in to your account",
         "username": "Username",

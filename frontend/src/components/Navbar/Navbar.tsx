@@ -1,6 +1,7 @@
 import { type FC } from "react";
 import { Link } from "react-router-dom";
 import { NavbarAuth } from "./NavbarAuth/NavbarAuth";
+import { LanguageSwitcher } from "../LanguageSwitcher/LanguageSwitcher";
 
 export const Navbar: FC = () => {
     return (
@@ -20,7 +21,10 @@ export const Navbar: FC = () => {
                         Search
                     </Link>
                 </div>
-                <NavbarAuth />
+                <div className="flex shrink-0 flex-nowrap items-center gap-4">
+                    <LanguageSwitcher />
+                    <NavbarAuth />
+                </div>
             </div>
         </nav>
     );

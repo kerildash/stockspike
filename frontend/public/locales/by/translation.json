@@ -13,13 +13,16 @@
             "contactProposal2": "i расказаць пра памылку"
         }
     },
+    "languageSwitcher": {
+        "label": "Абярыце мову"
+    },
     "login": {
         "title": "Увайдзіце ў свой акаўнт",
         "username": "Лагін",
         "usernameRequired": "Патрабуецца лагін",
         "password": "Пароль",
         "passwordRequired": "Патрабуецца пароль",
-        "forgotPassword": "Забыліся пароль?",
+        "forgotPassword": "Забылі пароль?",
         "submit": "Увайсці",
         "noAccount": "Яшчэ няма акаўнта?",
         "signUp": "Зарэгістравацца"
