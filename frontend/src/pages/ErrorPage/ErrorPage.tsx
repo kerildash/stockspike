@@ -4,12 +4,14 @@ import { UserProvider } from '../../context/useAuth';
 import { Toaster } from 'react-hot-toast';
 import { Navbar } from '../../components/Navbar/Navbar';
 import { Footer } from '../../components/Footer/Footer';
+import { useTranslation } from 'react-i18next';
 import { isRouteErrorResponse, useRouteError } from 'react-router';
 interface IErrorPageProps {}
 
 export const ErrorPage: FC<IErrorPageProps> = () => {
   const error = useRouteError();
   const isNotFound = isRouteErrorResponse(error) && error.status === 404;
+  const { t } = useTranslation();
 
   const contactMeLink = (
     <a
@@ -18,26 +20,26 @@ export const ErrorPage: FC<IErrorPageProps> = () => {
       target='_blank'
       rel='noopener noreferrer'
     >
-      contact me⮌
+      {t('error.contactMe', { symbol: '⮌' })}
     </a>
   );
 
   const notFound = (
-  <ErrorTile title='😕' message={'Page not found'}>
+  <ErrorTile title='😕' message={t('error.pageNotFound.title')}>
     <p className='text-yellow-700 pt-4'>
-      The page has probably been moved, deleted, or not yet created.
+      {t('error.pageNotFound.description')}
     </p>
     <p className='text-yellow-700 pt-2'>
-      If you think this is an error, please {' '}
-      {contactMeLink} and report the issue.
+      {t('error.pageNotFound.contactProposal1')} {' '}
+      {contactMeLink} {t('error.pageNotFound.contactProposal2')}
     </p>
   </ErrorTile>)
 
   const defaultError = (
-    <ErrorTile isWarning message={'Something went wrong'}>
+    <ErrorTile isWarning message={t('error.defaultError.title')}>
       <p className='text-yellow-700 pt-4'>
-        You can {contactMeLink}{' '}
-        and tell about the error.
+        {t('error.defaultError.contactProposal1')} {contactMeLink} {' '}
+        {t('error.defaultError.contactProposal2')}
       </p>
     </ErrorTile>)
 

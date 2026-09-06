@@ -1,0 +1,15 @@
+{    "error": {
+        "contactMe" : "contact me{{symbol}}",
+        "pageNotFound": {
+            "title" : "Page not found",
+            "description": "The page has probably been moved, deleted, or not yet created",
+            "contactProposal1" : "If you think this is an error, please",
+            "contactProposal2" : "and report the issue"
+        },
+        "defaultError": {
+            "title" : "Something went wrong",
+            "contactProposal1" : "You can",
+            "contactProposal2" : "and tell about the error"
+        }
+    }
+}
