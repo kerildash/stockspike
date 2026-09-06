@@ -14,4 +14,6 @@ i18n
     }
 });
 
+i18n.changeLanguage('by')
+
 export default i18n;

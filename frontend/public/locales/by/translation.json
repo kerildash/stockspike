@@ -1,14 +1,39 @@
 {
     "error": {
-        "contactMe" : "звяжыцеся са мной{{symbol}}",
+        "contactMe": "звяжыцеся са мной{{symbol}}",
         "pageNotFound": {
-            "title" : "Старонка не знойдзена",
+            "title": "Старонка не знойдзена",
             "description": "Старонка магла быць перанесена, выдалена або яшчэ не створана",
-            "contactProposal1" : "Калi вы ўпэўнены, што гэта памылка, калi ласка,",
-            "contactProposal2" : "i паведамiце аб гэтым"
+            "contactProposal1": "Калi вы ўпэўнены, што гэта памылка, калi ласка,",
+            "contactProposal2": "i паведамiце аб гэтым"
         },
         "defaultError": {
-            "title" : "Нешта пайшло не так"
+            "title": "Нешта пайшло не так",
+            "contactProposal1": "Вы можаце",
+            "contactProposal2": "i расказаць пра памылку"
         }
+    },
+    "login": {
+        "title": "Увайдзіце ў свой акаўнт",
+        "username": "Лагін",
+        "usernameRequired": "Патрабуецца лагін",
+        "password": "Пароль",
+        "passwordRequired": "Патрабуецца пароль",
+        "forgotPassword": "Забыліся пароль?",
+        "submit": "Увайсці",
+        "noAccount": "Яшчэ няма акаўнта?",
+        "signUp": "Зарэгістравацца"
+    },
+    "register": {
+        "title": "Стварыць новы акаўнт",
+        "username": "Лагін",
+        "usernameRequired": "Патрабуецца лагін",
+        "email": "Электронная пошта",
+        "emailRequired": "Патрабуецца электронная пошта",
+        "password": "Пароль",
+        "passwordRequired": "Патрабуецца пароль",
+        "submit": "Зарэгістравацца",
+        "hasAccount": "Ужо ёсць акаўнт?",
+        "logIn": "Увайсці"
     }
 }

@@ -1,15 +1,39 @@
-{    "error": {
-        "contactMe" : "contact me{{symbol}}",
+{
+    "error": {
+        "contactMe": "contact me{{symbol}}",
         "pageNotFound": {
-            "title" : "Page not found",
+            "title": "Page not found",
             "description": "The page has probably been moved, deleted, or not yet created",
-            "contactProposal1" : "If you think this is an error, please",
-            "contactProposal2" : "and report the issue"
+            "contactProposal1": "If you think this is an error, please",
+            "contactProposal2": "and report the issue"
         },
         "defaultError": {
-            "title" : "Something went wrong",
-            "contactProposal1" : "You can",
-            "contactProposal2" : "and tell about the error"
+            "title": "Something went wrong",
+            "contactProposal1": "You can",
+            "contactProposal2": "and tell about the error"
         }
+    },
+    "login": {
+        "title": "Log in to your account",
+        "username": "Username",
+        "usernameRequired": "Username is required",
+        "password": "Password",
+        "passwordRequired": "Password is required",
+        "forgotPassword": "Forgot password?",
+        "submit": "Log in",
+        "noAccount": "Don't have an account yet?",
+        "signUp": "Sign up"
+    },
+    "register": {
+        "title": "Register a new account",
+        "username": "Username",
+        "usernameRequired": "Username is required",
+        "email": "Email",
+        "emailRequired": "Email is required",
+        "password": "Password",
+        "passwordRequired": "Password is required",
+        "submit": "Sign up",
+        "hasAccount": "Already have an account?",
+        "logIn": "Log in"
     }
 }

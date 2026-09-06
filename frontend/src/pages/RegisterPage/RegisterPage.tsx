@@ -1,9 +1,11 @@
-import { type FC } from 'react';
+import { type FC, useMemo } from 'react';
+import { type TFunction } from 'i18next';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useAuth } from '../../context/useAuth';
 import { useForm } from 'react-hook-form';
 import { useLocation } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import {
   deleteGuestPortfolio,
   getGuestPortfolio,
@@ -22,16 +24,19 @@ type NavigationState = {
   username?: string;
 };
 
-const validation = Yup.object().shape({
-  username: Yup.string().required('Username is required'),
-  email: Yup.string().required('Email is required'),
-  password: Yup.string().required('Password is required'),
-});
+const createValidationSchema = (t: TFunction) =>
+  Yup.object().shape({
+    username: Yup.string().required(t('register.usernameRequired')),
+    email: Yup.string().required(t('register.emailRequired')),
+    password: Yup.string().required(t('register.passwordRequired')),
+  });
 
 export const RegisterPage: FC<IRegisterPageProps> = () => {
   const { registerUser, isLoggedIn } = useAuth();
   const location = useLocation();
   const state = location.state as NavigationState | null;
+  const { t } = useTranslation();
+  const validation = useMemo(() => createValidationSchema(t), [t]);
   const {
     register,
     handleSubmit,
@@ -67,7 +72,7 @@ export const RegisterPage: FC<IRegisterPageProps> = () => {
         <div className='w-full border border-gray-400 bg-white rounded-lg my-8 sm:max-w-md'>
           <div className='p-6 space-y-4 md:space-y-6 sm:p-8'>
             <h1 className='text-xl leading-tight tracking-tight text-gray-800 md:text-2xl'>
-              Register a new account
+              {t('register.title')}
             </h1>
             <form
               className='space-y-4 md:space-y-6'
@@ -78,13 +83,13 @@ export const RegisterPage: FC<IRegisterPageProps> = () => {
                   htmlFor='username'
                   className='block mb-2 text-sm normal text-gray-800'
                 >
-                  Username
+                  {t('register.username')}
                 </label>
                 <input
                   type='text'
                   id='username'
                   className='w-full px-4 py-2 text-gray-800 bg-white border-1 border-gray-400 rounded-lg focus:outline-none focus:border-gray-800 transition-colors duration-200'
-                  placeholder='Username'
+                  placeholder={t('register.username')}
                   {...register('username')}
                 />
                 {errors.username ? (
@@ -100,13 +105,13 @@ export const RegisterPage: FC<IRegisterPageProps> = () => {
                   htmlFor='email'
                   className='block mb-2 text-sm normal text-gray-800'
                 >
-                  Email
+                  {t('register.email')}
                 </label>
                 <input
                   type='text'
                   id='email'
                   className='w-full px-4 py-2 text-gray-800 bg-white border-1 border-gray-400 rounded-lg focus:outline-none focus:border-gray-800 transition-colors duration-200'
-                  placeholder='Email'
+                  placeholder={t('register.email')}
                   {...register('email')}
                 />
                 {errors.email ? (
@@ -122,7 +127,7 @@ export const RegisterPage: FC<IRegisterPageProps> = () => {
                   htmlFor='password'
                   className='block mb-2 text-sm normal text-gray-800'
                 >
-                  Password
+                  {t('register.password')}
                 </label>
                 <input
                   type='password'
@@ -143,15 +148,15 @@ export const RegisterPage: FC<IRegisterPageProps> = () => {
                 type='submit'
                 className='w-full text-gray-800 border-1 border-gray-400 cursor-pointer hover:border-gray-800 duration-200 focus:ring-1 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center'
               >
-                Sign up
+                {t('register.submit')}
               </button>
               <p className='normal text-sm text-gray-800'>
-                Already have an account?{' '}
+                {t('register.hasAccount')}{' '}
                 <a
                   href='/login'
                   className='text-gray-800 font-semibold hover:underline'
                 >
-                  Log in
+                  {t('register.logIn')}
                 </a>
               </p>
             </form>
