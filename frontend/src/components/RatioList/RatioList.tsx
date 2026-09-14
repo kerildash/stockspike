@@ -1,4 +1,5 @@
 import { type FC } from 'react';
+import { formatCompactMetric } from '../../utils/formatNumber';
 
 interface IRatioListProps {
   config: any;
@@ -6,25 +7,6 @@ interface IRatioListProps {
 }
 
 export const RatioList: FC<IRatioListProps> = ({config, data} : IRatioListProps) => { 
-  const format = (number: number | undefined): string => {
-    if (typeof number === 'undefined') {
-      return 'N/A'
-    }
-
-    const absolute= Math.abs(number)
-    const formattedNumber = absolute > 1000000000 
-      ? `${(number / 1000000000).toFixed(2)} B` 
-      : absolute > 1000000 
-        ? `${(number / 1000000).toFixed(2)} M` 
-        : absolute > 1000 
-          ? `${(number / 1000).toFixed(2)} K` 
-          : absolute >= 10 
-            ? `${number.toFixed(2)}` 
-            : number.toFixed(3)
-            
-    return formattedNumber
-  }
-  
   const renderedItem = config.map((configItem: any) => {
     return (
       <li key={configItem.label} className='py-3 '>
@@ -38,7 +20,7 @@ export const RatioList: FC<IRatioListProps> = ({config, data} : IRatioListProps)
             </p>
           </div>
           <div className='inline-flex items-center text-base text-xl font-semibold text-gray-900 pl-10'>
-            {format(configItem.render(data))}
+            {formatCompactMetric(configItem.render(data))}
           </div>
         </div>
       </li>

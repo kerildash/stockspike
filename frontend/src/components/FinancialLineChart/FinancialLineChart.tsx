@@ -10,11 +10,8 @@ import {
   YAxis,
 } from 'recharts';
 import type { ChartSeries, IStatementRow } from '../../models/Statement';
-import {
-  buildChartRows,
-  chartColors,
-  formatCompactNumber,
-} from '../../utils/financialChart';
+import { buildChartRows, chartColors } from '../../utils/financialChart';
+import { formatCompactNumber } from '../../utils/formatNumber';
 
 interface IFinancialLineChartProps<T extends IStatementRow> {
   data: T[];
