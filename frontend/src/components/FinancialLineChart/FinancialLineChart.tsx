@@ -29,11 +29,17 @@ export const FinancialLineChart = <T extends IStatementRow>({
   const rows = useMemo(() => buildChartRows(data, series), [data, series]);
 
   const toggleSeries = (key: string) => {
-    setHiddenKeys((previous) =>
-      previous.includes(key)
-        ? previous.filter((hiddenKey) => hiddenKey !== key)
-        : [...previous, key]
-    );
+    setHiddenKeys((previous) => {
+      if (previous.includes(key)) {
+        return previous.filter((hiddenKey) => hiddenKey !== key);
+      }
+
+      if (previous.length >= series.length - 1) {
+        return previous;
+      }
+
+      return [...previous, key];
+    });
   };
 
   return (
