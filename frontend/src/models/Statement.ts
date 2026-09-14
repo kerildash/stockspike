@@ -8,6 +8,15 @@ export type StatementColumn<T> = {
   render?: (row: T) => React.ReactNode;
 };
 
+export type StatementLine<T, G extends string = string> = StatementColumn<T> & {
+  group?: G;
+};
+
+export type ChartGroupDefinition<G extends string = string> = {
+  id: G;
+  title: string;
+};
+
 export type ChartSeries<T> = {
   key: keyof T & string;
   label: string;

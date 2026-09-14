@@ -1,63 +1,65 @@
-import type { ChartGroup, StatementColumn } from '../../../models/Statement';
+import type { StatementLine } from '../../../models/Statement';
 import type { ICompanyCashflowStatement } from '../../../services/FinancialApiService';
+import {
+  buildChartGroups,
+  buildStatementColumns,
+} from '../../../utils/statementConfig';
 
-export const cashflowStatementColumns: StatementColumn<ICompanyCashflowStatement>[] =
-  [
-    { key: 'date', label: 'Date' },
-    { key: 'netIncome', label: 'Net Income' },
-    {
-      key: 'netCashProvidedByOperatingActivities',
-      label: 'Net Cash From Operating Activities',
-    },
-    {
-      key: 'netCashProvidedByInvestingActivities',
-      label: 'Net Cash From Investing Activities',
-    },
-    { key: 'netDividendsPaid', label: 'Net Dividends Paid' },
-    {
-      key: 'netCashProvidedByFinancingActivities',
-      label: 'Net Cash From Financing Activities',
-    },
-    { key: 'netChangeInCash', label: 'Net Change In Cash' },
-    { key: 'operatingCashFlow', label: 'Operating Cash Flow' },
-    { key: 'capitalExpenditure', label: 'Capital Expenditure' },
-    { key: 'freeCashFlow', label: 'Free Cash Flow' },
-  ];
+const chartGroupDefinitions = [
+  { id: 'cash-from-activities', title: 'Cash from Activities' },
+  { id: 'cash-generation', title: 'Cash Generation' },
+  { id: 'distributions', title: 'Distributions' },
+] as const;
 
-export const cashflowStatementChartGroups: ChartGroup<ICompanyCashflowStatement>[] =
-  [
-    {
-      id: 'cash-from-activities',
-      title: 'Cash From Activities',
-      series: [
-        {
-          key: 'netCashProvidedByOperatingActivities',
-          label: 'Net Cash From Operating Activities',
-        },
-        {
-          key: 'netCashProvidedByInvestingActivities',
-          label: 'Net Cash From Investing Activities',
-        },
-        {
-          key: 'netCashProvidedByFinancingActivities',
-          label: 'Net Cash From Financing Activities',
-        },
-        { key: 'netChangeInCash', label: 'Net Change In Cash' },
-      ],
-    },
-    {
-      id: 'cash-generation',
-      title: 'Cash Generation',
-      series: [
-        { key: 'netIncome', label: 'Net Income' },
-        { key: 'operatingCashFlow', label: 'Operating Cash Flow' },
-        { key: 'freeCashFlow', label: 'Free Cash Flow' },
-        { key: 'capitalExpenditure', label: 'Capital Expenditure' },
-      ],
-    },
-    {
-      id: 'distributions',
-      title: 'Distributions',
-      series: [{ key: 'netDividendsPaid', label: 'Net Dividends Paid' }],
-    },
-  ];
+type CashflowStatementGroupId = (typeof chartGroupDefinitions)[number]['id'];
+
+const lines: StatementLine<
+  ICompanyCashflowStatement,
+  CashflowStatementGroupId
+>[] = [
+  { key: 'date', label: 'Date' },
+  { key: 'netIncome', label: 'Net Income', group: 'cash-generation' },
+  {
+    key: 'netCashProvidedByOperatingActivities',
+    label: 'Net Cash From Operating Activities',
+    group: 'cash-from-activities',
+  },
+  {
+    key: 'netCashProvidedByInvestingActivities',
+    label: 'Net Cash From Investing Activities',
+    group: 'cash-from-activities',
+  },
+  {
+    key: 'netDividendsPaid',
+    label: 'Net Dividends Paid',
+    group: 'distributions',
+  },
+  {
+    key: 'netCashProvidedByFinancingActivities',
+    label: 'Net Cash From Financing Activities',
+    group: 'cash-from-activities',
+  },
+  {
+    key: 'netChangeInCash',
+    label: 'Net Change In Cash',
+    group: 'cash-from-activities',
+  },
+  {
+    key: 'operatingCashFlow',
+    label: 'Operating Cash Flow',
+    group: 'cash-generation',
+  },
+  {
+    key: 'capitalExpenditure',
+    label: 'Capital Expenditure',
+    group: 'cash-generation',
+  },
+  { key: 'freeCashFlow', label: 'Free Cash Flow', group: 'cash-generation' },
+];
+
+export const cashflowStatementColumns = buildStatementColumns(lines);
+
+export const cashflowStatementChartGroups = buildChartGroups(
+  lines,
+  chartGroupDefinitions
+);

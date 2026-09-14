@@ -1,83 +1,71 @@
-import type { ChartGroup, StatementColumn } from '../../../models/Statement';
+import type { StatementLine } from '../../../models/Statement';
 import type { ICompanyIncomeStatement } from '../../../services/FinancialApiService';
+import {
+  buildChartGroups,
+  buildStatementColumns,
+} from '../../../utils/statementConfig';
 
-export const incomeStatementColumns: StatementColumn<ICompanyIncomeStatement>[] =
-  [
-    { key: 'date', label: 'Date' },
-    { key: 'revenue', label: 'Revenue' },
-    { key: 'costOfRevenue', label: 'Cost Of Revenue' },
-    { key: 'grossProfit', label: 'Gross Profit' },
-    {
-      key: 'depreciationAndAmortization',
-      label: 'Depreciation & Amortization',
-    },
-    { key: 'ebitda', label: 'EBITDA' },
-    { key: 'ebit', label: 'EBIT' },
-    { key: 'operatingIncome', label: 'Operating Income' },
-    {
-      key: 'nonOperatingIncomeExcludingInterest',
-      label: 'Non-Operating Income',
-    },
-    {
-      key: 'totalOtherIncomeExpensesNet',
-      label: 'Total Other Income/Expenses Net',
-    },
-    { key: 'incomeBeforeTax', label: 'Income Before Tax' },
-    { key: 'incomeTaxExpense', label: 'Income Tax Expense' },
-    { key: 'netIncome', label: 'Net Income' },
-    { key: 'eps', label: 'Earnings Per Share' },
-  ];
+const chartGroupDefinitions = [
+  { id: 'revenue-and-gross-profit', title: 'Revenue and Gross Profit' },
+  { id: 'operating-results', title: 'Operating Results' },
+  { id: 'other-income', title: 'Other Income' },
+  { id: 'earnings', title: 'Earnings' },
+  { id: 'per-share', title: 'Per Share' },
+] as const;
 
-export const incomeStatementChartGroups: ChartGroup<ICompanyIncomeStatement>[] =
-  [
-    {
-      id: 'revenue-and-gross-profit',
-      title: 'Revenue And Gross Profit',
-      series: [
-        { key: 'revenue', label: 'Revenue' },
-        { key: 'costOfRevenue', label: 'Cost Of Revenue' },
-        { key: 'grossProfit', label: 'Gross Profit' },
-      ],
-    },
-    {
-      id: 'operating-results',
-      title: 'Operating Results',
-      series: [
-        { key: 'operatingIncome', label: 'Operating Income' },
-        { key: 'ebit', label: 'EBIT' },
-        { key: 'ebitda', label: 'EBITDA' },
-        {
-          key: 'depreciationAndAmortization',
-          label: 'Depreciation & Amortization',
-        },
-      ],
-    },
-    {
-      id: 'other-income',
-      title: 'Other Income',
-      series: [
-        {
-          key: 'nonOperatingIncomeExcludingInterest',
-          label: 'Non-Operating Income',
-        },
-        {
-          key: 'totalOtherIncomeExpensesNet',
-          label: 'Total Other Income/Expenses Net',
-        },
-      ],
-    },
-    {
-      id: 'earnings',
-      title: 'Earnings',
-      series: [
-        { key: 'incomeBeforeTax', label: 'Income Before Tax' },
-        { key: 'incomeTaxExpense', label: 'Income Tax Expense' },
-        { key: 'netIncome', label: 'Net Income' },
-      ],
-    },
-    {
-      id: 'per-share',
-      title: 'Per Share',
-      series: [{ key: 'eps', label: 'Earnings Per Share' }],
-    },
-  ];
+type IncomeStatementGroupId = (typeof chartGroupDefinitions)[number]['id'];
+
+const lines: StatementLine<
+  ICompanyIncomeStatement,
+  IncomeStatementGroupId
+>[] = [
+  { key: 'date', label: 'Date' },
+  {
+    key: 'revenue',
+    label: 'Revenue',
+    group: 'revenue-and-gross-profit',
+  },
+  {
+    key: 'costOfRevenue',
+    label: 'Cost Of Revenue',
+    group: 'revenue-and-gross-profit',
+  },
+  {
+    key: 'grossProfit',
+    label: 'Gross Profit',
+    group: 'revenue-and-gross-profit',
+  },
+  {
+    key: 'depreciationAndAmortization',
+    label: 'Depreciation & Amortization',
+    group: 'operating-results',
+  },
+  { key: 'ebitda', label: 'EBITDA', group: 'operating-results' },
+  { key: 'ebit', label: 'EBIT', group: 'operating-results' },
+  {
+    key: 'operatingIncome',
+    label: 'Operating Income',
+    group: 'operating-results',
+  },
+  {
+    key: 'nonOperatingIncomeExcludingInterest',
+    label: 'Non-Operating Income',
+    group: 'other-income',
+  },
+  {
+    key: 'totalOtherIncomeExpensesNet',
+    label: 'Total Other Income/Expenses Net',
+    group: 'other-income',
+  },
+  { key: 'incomeBeforeTax', label: 'Income Before Tax', group: 'earnings' },
+  { key: 'incomeTaxExpense', label: 'Income Tax Expense', group: 'earnings' },
+  { key: 'netIncome', label: 'Net Income', group: 'earnings' },
+  { key: 'eps', label: 'Earnings Per Share', group: 'per-share' },
+];
+
+export const incomeStatementColumns = buildStatementColumns(lines);
+
+export const incomeStatementChartGroups = buildChartGroups(
+  lines,
+  chartGroupDefinitions
+);
