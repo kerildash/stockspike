@@ -21,7 +21,7 @@ export const StatementPanel = <T extends IStatementRow>({
   columns,
   chartGroups,
 }: IStatementPanelProps<T>) => {
-  const [viewMode, setViewMode] = useState<StatementViewMode>('table');
+  const [viewMode, setViewMode] = useState<StatementViewMode>('charts');
   const chartData = useMemo(() => sortByDateAscending(data), [data]);
 
   return (
