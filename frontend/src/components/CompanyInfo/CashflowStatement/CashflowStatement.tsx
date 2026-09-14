@@ -7,6 +7,7 @@ import { Link, useOutletContext } from 'react-router-dom';
 import Loading from '../../Loading/Loading';
 import { ErrorTile } from '../../ErrorTile/ErrorTile';
 import { StatementPanel } from '../../StatementPanel/StatementPanel';
+import { companySections } from '../companySections';
 import {
   cashflowStatementChartGroups,
   cashflowStatementColumns,
@@ -65,6 +66,7 @@ export const CashflowStatement: FC<ICashflowStatementProps> = () => {
         </ErrorTile>
       ) : (
         <StatementPanel
+          title={companySections.cashflowStatement.label}
           data={cashflowStatement}
           columns={cashflowStatementColumns}
           chartGroups={cashflowStatementChartGroups}
