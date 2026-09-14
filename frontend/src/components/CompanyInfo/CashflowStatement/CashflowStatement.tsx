@@ -1,5 +1,4 @@
 import { useEffect, useState, type FC } from 'react';
-import { Table } from '../../Table/Table';
 import {
   type ICompanyCashflowStatement,
   getCashflowStatement,
@@ -7,56 +6,17 @@ import {
 import { Link, useOutletContext } from 'react-router-dom';
 import Loading from '../../Loading/Loading';
 import { ErrorTile } from '../../ErrorTile/ErrorTile';
+import { StatementPanel } from '../../StatementPanel/StatementPanel';
+import {
+  cashflowStatementChartGroups,
+  cashflowStatementColumns,
+} from './cashflowStatementConfig';
 interface ICashflowStatementProps {}
-const configs = [
-  {
-    label: 'Date',
-    render: (company: ICompanyCashflowStatement) => company.date,
-  },
-  {
-    label: 'Net Income',
-    render: (company: ICompanyCashflowStatement) => company.netIncome,
-  },
-  {
-    label: 'Net Cash From Operating Activities',
-    render: (company: ICompanyCashflowStatement) =>
-      company.netCashProvidedByOperatingActivities,
-  },
-  {
-    label: 'Net Cash From Investing Activities',
-    render: (company: ICompanyCashflowStatement) =>
-      company.netCashProvidedByInvestingActivities,
-  },
-  {
-    label: 'Net Dividends Paid',
-    render: (company: ICompanyCashflowStatement) => company.netDividendsPaid,
-  },
-  {
-    label: 'Net Cash From Financing Activities',
-    render: (company: ICompanyCashflowStatement) =>
-      company.netCashProvidedByFinancingActivities,
-  },
-  {
-    label: 'Net Change In Cash',
-    render: (company: ICompanyCashflowStatement) => company.netChangeInCash,
-  },
-  {
-    label: 'Operating Cash Flow',
-    render: (company: ICompanyCashflowStatement) => company.operatingCashFlow,
-  },
-  {
-    label: 'Capital Expenditure',
-    render: (company: ICompanyCashflowStatement) => company.capitalExpenditure,
-  },
-  {
-    label: 'Free Cash Flow',
-    render: (company: ICompanyCashflowStatement) => company.freeCashFlow,
-  },
-];
 export const CashflowStatement: FC<ICashflowStatementProps> = () => {
   const { ticker } = useOutletContext<{ ticker: string }>();
-  const [cashflowStatement, setCashflowStatement] =
-    useState<ICompanyCashflowStatement[]>();
+  const [cashflowStatement, setCashflowStatement] = useState<
+    ICompanyCashflowStatement[]
+  >([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
@@ -81,7 +41,7 @@ export const CashflowStatement: FC<ICashflowStatementProps> = () => {
     };
 
     getProfileInit();
-  }, []);
+  }, [ticker]);
   return (
     <div>
       {loading ? (
@@ -104,7 +64,11 @@ export const CashflowStatement: FC<ICashflowStatementProps> = () => {
           </div>
         </ErrorTile>
       ) : (
-        <Table data={cashflowStatement} config={configs} />
+        <StatementPanel
+          data={cashflowStatement}
+          columns={cashflowStatementColumns}
+          chartGroups={cashflowStatementChartGroups}
+        />
       )}
     </div>
   );

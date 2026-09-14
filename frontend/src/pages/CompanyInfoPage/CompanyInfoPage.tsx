@@ -7,6 +7,7 @@ import { BigTile } from '../../components/CompanyInfo/BigTile/BigTile';
 import Loading from '../../components/Loading/Loading';
 import { ErrorTile } from '../../components/ErrorTile/ErrorTile';
 import { Footer } from '../../components/Footer/Footer';
+import { formatCompactCurrency } from '../../utils/formatNumber';
 
 interface ICompanyInfoPageProps {}
 
@@ -47,26 +48,6 @@ export const CompanyInfoPage: FC<ICompanyInfoPageProps> = () => {
     getProfileInit();
   }, [ticker]);
 
-  const format = (number: number | undefined): string => {
-    if (typeof number === 'undefined' || number == 0) {
-      return 'N/A';
-    }
-
-    const absolute = Math.abs(number);
-    const formattedNumber =
-      absolute > 1000000000
-        ? `$${(number / 1000000000).toFixed(2)} B`
-        : absolute > 1000000
-          ? `$${(number / 1000000).toFixed(2)} M`
-          : absolute > 1000
-            ? `$${(number / 1000).toFixed(2)} K`
-            : absolute >= 10
-              ? `$${number.toFixed(2)}`
-              : `$${number.toFixed(3)}`;
-
-    return formattedNumber;
-  };
-
   return (
     <div>
       {loading ? (
@@ -100,11 +81,11 @@ export const CompanyInfoPage: FC<ICompanyInfoPageProps> = () => {
                   <BigTile title='Sector' info={companyInfo?.sector!} />
                   <BigTile
                     title='Stock Price'
-                    info={`${format(companyInfo?.price)}`}
+                    info={formatCompactCurrency(companyInfo?.price)}
                   />
                   <BigTile
                     title='Market Cap'
-                    info={`${format(companyInfo?.marketCap)}`}
+                    info={formatCompactCurrency(companyInfo?.marketCap)}
                   />
                 </div>
               </Dashboard>
