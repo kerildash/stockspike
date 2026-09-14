@@ -11,8 +11,11 @@ export const Table: FC<ITableProps> = ({ data, config }: ITableProps) => {
       <tr className=' py-4 px-5 border-b-1 border-gray-200' key={item.date}>
         {config.map((value: any) => {
           return (
-            <td className='whitespace-nowrap p-4 text-sm font-normal text-gray-900'>
-              {value.render(item)}
+            <td
+              key={value.key ?? value.label}
+              className='whitespace-nowrap p-4 text-sm font-normal text-gray-900'
+            >
+              {value.render ? value.render(item) : item[value.key]}
             </td>
           );
         })}
