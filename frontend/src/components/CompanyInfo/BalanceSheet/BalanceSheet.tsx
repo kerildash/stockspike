@@ -4,6 +4,7 @@ import { Link, useOutletContext } from 'react-router-dom';
 import Loading from '../../Loading/Loading';
 import { ErrorTile } from '../../ErrorTile/ErrorTile';
 import { StatementPanel } from '../../StatementPanel/StatementPanel';
+import { companySections } from '../companySections';
 import {
   balanceSheetChartGroups,
   balanceSheetColumns,
@@ -61,6 +62,7 @@ export const BalanceSheet: FC<IBalanceSheetProps> = () => {
         </ErrorTile>
       ) : (
         <StatementPanel
+          title={companySections.balanceSheet.label}
           data={balanceSheet}
           columns={balanceSheetColumns}
           chartGroups={balanceSheetChartGroups}

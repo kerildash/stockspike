@@ -11,12 +11,14 @@ import { Table } from '../Table/Table';
 import { ViewModeToggle } from '../ViewModeToggle/ViewModeToggle';
 
 interface IStatementPanelProps<T extends IStatementRow> {
+  title: string;
   data: T[];
   columns: StatementColumn<T>[];
   chartGroups: ChartGroup<T>[];
 }
 
 export const StatementPanel = <T extends IStatementRow>({
+  title,
   data,
   columns,
   chartGroups,
@@ -26,7 +28,10 @@ export const StatementPanel = <T extends IStatementRow>({
 
   return (
     <div className='flex flex-col gap-3'>
-      <ViewModeToggle value={viewMode} onChange={setViewMode} />
+      <div className='flex items-center gap-4'>
+        <h2 className='text-2xl text-gray-900'>{title}</h2>
+        <ViewModeToggle value={viewMode} onChange={setViewMode} />
+      </div>
       {viewMode === 'table' ? (
         <Table data={data} config={columns} />
       ) : (

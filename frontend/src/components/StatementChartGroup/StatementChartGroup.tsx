@@ -12,7 +12,7 @@ export const StatementChartGroup = <T extends IStatementRow>({
 }: IStatementChartGroupProps<T>) => {
   return (
     <section className='p-3 bg-white rounded-lg border border-gray-200'>
-      <h3 className='px-1 pb-2 text-sm font-medium text-gray-900 tracking-wide'>
+      <h3 className='px-2 pb-2 text-sm font-medium text-gray-900 tracking-wide'>
         {group.title}
       </h3>
       <FinancialLineChart data={data} series={group.series} />

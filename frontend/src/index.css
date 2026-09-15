@@ -4,8 +4,3 @@
 html, body, #root {
     font-family: "Inter", Arial, sans-serif;
 }
-
-button, input, textarea, select {
-    font: inherit;
-}
-  

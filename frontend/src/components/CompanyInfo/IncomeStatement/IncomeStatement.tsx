@@ -4,6 +4,7 @@ import { Link, useOutletContext } from 'react-router-dom';
 import Loading from '../../Loading/Loading';
 import { ErrorTile } from '../../ErrorTile/ErrorTile';
 import { StatementPanel } from '../../StatementPanel/StatementPanel';
+import { companySections } from '../companySections';
 import {
   incomeStatementChartGroups,
   incomeStatementColumns,
@@ -63,6 +64,7 @@ export const IncomeStatement: FC<IIncomeStatementProps> = () => {
         </ErrorTile>
       ) : (
         <StatementPanel
+          title={companySections.incomeStatement.label}
           data={incomeStatement}
           columns={incomeStatementColumns}
           chartGroups={incomeStatementChartGroups}
