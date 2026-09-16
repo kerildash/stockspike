@@ -11,7 +11,7 @@ interface CardListProps {
 
 const CardList: React.FC<CardListProps> = ({ companies, onAddToPortfolio: onAddToPortfolio }: CardListProps) => {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto min-w-0 px-4 py-4">
       {companies.length === 0 ? (
         <div className="text-center py-12">
           <div className="flex justify-center text-7xl mb-4 text-gray-400">
@@ -21,7 +21,7 @@ const CardList: React.FC<CardListProps> = ({ companies, onAddToPortfolio: onAddT
           <p className="text-gray-500 mt-2">Try searching for a different company</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid min-w-0 grid-cols-[repeat(auto-fill,minmax(min(16rem,100%),1fr))] gap-6">
           {companies.map((company) => (
             <Card 
               key={uuidv4()} 
