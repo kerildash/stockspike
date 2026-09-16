@@ -13,12 +13,12 @@ export const StartLoginRegister: FC<IStartLoginRegisterProps> = () => {
         value={username}
         onChange={(event) => setUsername(event.target.value)}
         placeholder='Enter username'
-        className='placeholder-gray-900 w-full h-13 px-4 pl-6 text-gray-900 bg-white border-1 border-gray-900 rounded-3xl focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-white'
+        className='placeholder-gray-600 w-full h-13 px-4 pl-6 text-gray-900 bg-white border-1 border-gray-600 rounded-3xl transition-colors duration-200 focus:outline-none '
       />
 
       <div className='mt-10 flex items-center h-30 rounded-3xl'>
         <button
-          className='flex-1 bg-gray-100 rounded-l-3xl h-full hover:cursor-pointer border-1 border-r-transparent hover:border-r-black hover:outline hover:outline-1'
+          className='flex-1 bg-gray-300 text-black rounded-l-3xl h-full border-1 border-gray-600 border-r-transparent transition-colors duration-200 hover:cursor-pointer hover:text-black hover:bg-gray-200'
           type='button'
           onClick={() => navigate('/login', { state: { username } })}
         >
@@ -26,7 +26,7 @@ export const StartLoginRegister: FC<IStartLoginRegisterProps> = () => {
         </button>
 
         <button
-          className='flex-1 h-full border-1 rounded-r-3xl hover:cursor-pointer hover:outline hover:outline-1'
+          className='flex-1 h-full  text-gray-700 border-1 border-gray-600 rounded-r-3xl transition-colors duration-200 hover:cursor-pointer hover:bg-gray-100 hover:text-black'
           type='button'
           onClick={() => navigate('/signup', { state: { username } })}
         >

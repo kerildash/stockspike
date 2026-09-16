@@ -14,8 +14,13 @@ export const HomePage: FC<IHomePageProps> = () => {
     setSearch(e.target.value);
   }
 
-  const startSearch = () => 
-    navigate('/search', { state: { search: search.trim() } })
+  const startSearch = () => {
+    const term = search.trim();
+    if (!term) {
+      return;
+    }
+    navigate(`/search?q=${encodeURIComponent(term)}`);
+  };
 
   const onKeyDown = async (e: any) => {
     if (e.key === 'Enter' && search.trim()) {
@@ -26,7 +31,7 @@ export const HomePage: FC<IHomePageProps> = () => {
   return (
     <>
     <div>
-      <div className='lg:w-full lg:max-w-340 min-h-[calc(100vh-7.5rem)] md:px-40 sm:px-20 px-10 py-5 lg:mx-auto flex items-center'>
+      <div className='lg:w-full lg:max-w-340 min-h-[calc(100vh-var(--navbar-height)-3.5rem)] md:px-40 sm:px-20 px-10 py-5 lg:mx-auto flex items-center'>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-15 '>
           <div className='flex flex-col justify-between gap-6'>
 

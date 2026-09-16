@@ -51,21 +51,21 @@ export const CompanyInfoPage: FC<ICompanyInfoPageProps> = () => {
   return (
     <div>
       {loading ? (
-        <div className='flex flex-col min-h-[calc(100vh-4rem)]'>
+        <div className='flex flex-col min-h-[calc(100vh-var(--navbar-height))]'>
           <div className='flex-1'>
             <Loading />
           </div>
           <Footer />
         </div>
       ) : error ? (
-        <div className='flex flex-col min-h-[calc(100vh-4rem)]'>
+        <div className='flex flex-col min-h-[calc(100vh-var(--navbar-height))]'>
           <div className='flex-1'>
             <ErrorTile message={error} className='m-15' isWarning />
           </div>
           <Footer />
         </div>
       ) : (
-        <div className='w-full relative overflow-x-hidden min-h-[calc(100vh-4rem)] flex flex-col'>
+        <div className='w-full relative overflow-x-hidden min-h-[calc(100vh-var(--navbar-height))] flex flex-col'>
           <Sidebar />
           <div className='md:ml-70 flex flex-col flex-1'>
             <div className='flex-1'>

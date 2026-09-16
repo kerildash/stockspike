@@ -5,7 +5,37 @@ import { Toaster } from 'react-hot-toast';
 import { Navbar } from '../../components/Navbar/Navbar';
 import { Footer } from '../../components/Footer/Footer';
 import { isRouteErrorResponse, useRouteError } from 'react-router';
+
 interface IErrorPageProps {}
+
+const ConfusedFace: FC<{ className?: string }> = ({ className }) => (
+  <svg
+    className={className}
+    width='1em'
+    height='1em'
+    viewBox='0 0 36 36'
+    xmlns='http://www.w3.org/2000/svg'
+    aria-hidden
+  >
+    <circle
+      cx='18'
+      cy='18'
+      r='14.8'
+      fill='#FFCC4D'
+      stroke='#000'
+      strokeWidth='2'
+    />
+    <circle cx='12.5' cy='14.6' r='2' fill='#000' />
+    <circle cx='23.5' cy='14.6' r='2' fill='#000' />
+    <path
+      d='M11.8 23.4 Q18 21.2 24.2 23.4'
+      fill='none'
+      stroke='#000'
+      strokeWidth='2'
+      strokeLinecap='round'
+    />
+  </svg>
+);
 
 export const ErrorPage: FC<IErrorPageProps> = () => {
   const error = useRouteError();
@@ -23,7 +53,7 @@ export const ErrorPage: FC<IErrorPageProps> = () => {
   );
 
   const notFound = (
-  <ErrorTile title='😕' message={'Page not found'}>
+  <ErrorTile icon={ConfusedFace} message={'Page not found'}>
     <p className='text-yellow-700 pt-4'>
       The page has probably been moved, deleted, or not yet created.
     </p>
@@ -48,8 +78,8 @@ export const ErrorPage: FC<IErrorPageProps> = () => {
         <div className='fixed top-0 right-0 left-0 z-50'>
           <Navbar />
         </div>
-        <main className='pt-16'>
-          <div className='flex flex-col h-[calc(100vh-4rem)]'>
+        <main className='pt-[var(--navbar-height)]'>
+          <div className='flex flex-col h-[calc(100vh-var(--navbar-height))]'>
             <div className='py-10 px-15 flex-1'>
               {isNotFound ? notFound : defaultError}
             </div>

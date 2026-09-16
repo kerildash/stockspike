@@ -107,7 +107,7 @@ export const CompanyProfile: FC<ICompanyProfileProps> = () => {
       {loading ? (
         <Loading />
       ) : error ? (
-        <ErrorTile message='Company metrics not available.' isWarning>
+        <ErrorTile message='Company metrics are not available' isWarning>
           <div>
             <p className='text-yellow-700'>Please check another company, for example:</p>
             <div className='mt-4 grid grid-cols-4 gap-2 w-fit mx-auto'>
