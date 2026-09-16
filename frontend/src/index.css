@@ -3,6 +3,7 @@
 
 :root {
     --navbar-height: 3rem;
+    --navbar-control-height: 2rem;
 }
 
 html, body, #root {
