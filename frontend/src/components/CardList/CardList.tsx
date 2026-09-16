@@ -1,4 +1,5 @@
 import React, { type SyntheticEvent } from 'react';
+import { IoSearchOutline } from 'react-icons/io5';
 import Card from '../Card/Card';
 import { type ICompanySearch } from '../../services/FinancialApiService';
 import { v4 as uuidv4 } from 'uuid';
@@ -13,7 +14,9 @@ const CardList: React.FC<CardListProps> = ({ companies, onAddToPortfolio: onAddT
     <div className="container mx-auto px-4 py-8">
       {companies.length === 0 ? (
         <div className="text-center py-12">
-          <div className="text-gray-400 text-6xl mb-4">🔍</div>
+          <div className="flex justify-center text-7xl mb-4 text-gray-400">
+            <IoSearchOutline />
+          </div>
           <p className="text-xl text-gray-600 font-medium">No results found</p>
           <p className="text-gray-500 mt-2">Try searching for a different company</p>
         </div>

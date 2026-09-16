@@ -14,7 +14,7 @@ const Card: React.FC<CardProps> = ({
   onAddToPortfolio: onAddToPortfolio
 }: CardProps) => {
   return (
-    <div className="bg-white rounded-lg  p-6 border border-gray-200 flex flex-col h-full">
+    <div className="bg-white rounded-lg p-6 border border-gray-200 flex flex-col h-full">
       <div className="flex-1">
         <div className='mb-4 text-center'>
           <Link to={`/company/${company.symbol}`} className="text-xl font-bold text-gray-900 mb-4 cursor-pointer py-2 px-8 rounded-lg duration-200 hover:ring-1 hover:ring-gray-300">{company.symbol}</Link>
