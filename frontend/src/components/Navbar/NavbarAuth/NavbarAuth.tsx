@@ -3,17 +3,23 @@ import { useAuth } from '../../../context/useAuth';
 import { Link } from 'react-router';
 interface INavbarAuthProps {}
 
+const actionButton =
+  'inline-flex h-8 items-center justify-center whitespace-nowrap rounded-full px-3 text-sm font-medium transition-colors duration-200';
+
 export const NavbarAuth: FC<INavbarAuthProps> = () => {
   const { user, isLoggedIn, logOut } = useAuth();
   const username = user?.userName;
 
   if (isLoggedIn()) {
     return (
-      <div className='flex shrink-0 flex-nowrap items-baseline gap-4'>
-        <div className='text-lg text-white whitespace-nowrap'>{username}</div>
+      <div className='flex shrink-0 flex-nowrap items-center gap-3'>
+        <div className='hidden text-md text-slate-800 font-medium whitespace-nowrap sm:block'>
+          {username}
+        </div>
         <button
           onClick={logOut}
-          className = "inline-flex items-baseline cursor-pointer justify-center whitespace-nowrap rounded-md border-2 border-gray-600 bg-gray-600 w-24 py-2 text-white transition-colors duration-200 hover:bg-gray-500 hover:border-gray-500">
+          className={`${actionButton} cursor-pointer bg-slate-800 text-white hover:bg-slate-700`}
+        >
             Sign Out
         </button>
       </div>
@@ -21,16 +27,16 @@ export const NavbarAuth: FC<INavbarAuthProps> = () => {
   }
 
   return (
-    <div className='flex shrink-0 flex-nowrap items-baseline gap-2'>
+    <div className='flex shrink-0 flex-nowrap items-center gap-2'>
       <Link
         to='/signup'
-        className='inline-flex w-24 justify-center border-2 border-gray-600 items-baseline whitespace-nowrap rounded-md py-2 text-white transition-colors duration-200 hover:bg-gray-500 hover:border-gray-500'
+        className={`${actionButton} hidden border border-gray-200 text-slate-800 hover:bg-slate-100 sm:inline-flex`}
       >
         Sign Up
       </Link>
       <Link
         to='/login'
-        className='inline-flex items-baseline justify-center whitespace-nowrap rounded-md border-2 border-gray-600 bg-gray-600 w-24 py-2 text-white transition-colors duration-200 hover:bg-gray-500 hover:border-gray-500'
+        className={`${actionButton} bg-blue-800 text-white hover:bg-blue-900`}
       >
         Log In
       </Link>

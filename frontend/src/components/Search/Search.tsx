@@ -6,7 +6,7 @@ interface SearchProps {
   onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void;
   search: string;
   startSearch?: () => void;
-  style?: "default" | "hero";
+  style?: "default" | "hero" | "navbar";
 }
 
 const Search: FC<SearchProps> = ({ onChange, onKeyDown, search, startSearch, style }: SearchProps) => {  
@@ -26,6 +26,30 @@ const Search: FC<SearchProps> = ({ onChange, onKeyDown, search, startSearch, sty
         </div>
       </div>
     </section>
+
+  const navbarVersion =
+    <form
+      className="w-full min-w-0"
+      onSubmit={(event) => {
+        event.preventDefault();
+        startSearch?.();
+      }}
+    >
+      <div className="relative">
+        <input
+          type="text"
+          value={search}
+          onChange={onChange}
+          onKeyDown={onKeyDown}
+          placeholder="Search companies..."
+          aria-label="Search companies"
+          className="h-8 w-full rounded-full border border-gray-200 bg-gray-50 pl-9 pr-3 text-sm text-gray-900 placeholder:text-gray-400 outline-none transition-[background-color,border-color,box-shadow] duration-200 hover:border-gray-300 focus:border-blue-800/40 focus:bg-white"
+        />
+        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+          <IoSearch className="h-4 w-4 text-gray-400" />
+        </div>
+      </div>
+    </form>
 
   const heroVersion =
     <section className="w-full min-w-0">
@@ -53,9 +77,15 @@ const Search: FC<SearchProps> = ({ onChange, onKeyDown, search, startSearch, sty
       </div>
     </section>
 
-  return (!style || style === "default")
-    ? searchPageStyle 
-    : heroVersion;  
+  if (style === "hero") {
+    return heroVersion;
+  }
+
+  if (style === "navbar") {
+    return navbarVersion;
+  }
+
+  return searchPageStyle;
 };
 
 export default Search;

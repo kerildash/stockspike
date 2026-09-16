@@ -1,14 +1,11 @@
 import {
   type FC,
   useState,
-  type ChangeEvent,
-  type KeyboardEvent,
   useEffect,
 } from 'react';
 import { searchCompanies, type ICompanySearch } from '../../services/FinancialApiService';
 import { ListPortfolio } from '../../components/Portfolio/ListPortfolio/ListPortfolio';
 import CardList from '../../components/CardList/CardList';
-import Search from '../../components/Search/Search';
 import Loading from '../../components/Loading/Loading';
 import { ErrorTile } from '../../components/ErrorTile/ErrorTile';
 import type { StockResponse } from '../../models/StockResponse';
@@ -24,36 +21,37 @@ import {
   deleteFromPortfolio,
   getGuestPortfolio,
 } from '../../services/GuestPortfolioService';
-import { useLocation } from 'react-router';
+import { useSearchParams } from 'react-router';
 import { Footer } from '../../components/Footer/Footer';
 import { WarningPortfolio } from '../../components/Portfolio/WarningPortfolio/WarningPortfolio';
+import { IoSearchOutline } from 'react-icons/io5';
 
 interface ISearchPageProps {}
 
-type NavigationState = {
-  search?: string;
-};
-
 export const SearchPage: FC<ISearchPageProps> = () => {
-  const [search, setSearch] = useState<string>('');
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get('q')?.trim() ?? '';
   const [searchResponse, setSearchResponse] = useState<ICompanySearch[]>([]);
   const [serverError, setServerError] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [portfolioItems, setPortfolioItems] = useState<StockResponse[]>([]);
 
-  const location = useLocation();
-  const navigationState = location.state as NavigationState | null;
-
   const { isLoggedIn } = useAuth();
 
   useEffect(() => {
-    if (navigationState?.search) {
-      setSearch(navigationState?.search);
-      runSearch(navigationState?.search);
-    }
-
     getPortfolio();
   }, []);
+
+  useEffect(() => {
+    if (!query) {
+      setSearchResponse([]);
+      setServerError('');
+      setLoading(false);
+      return;
+    }
+
+    runSearch(query);
+  }, [query]);
 
   const getPortfolio = () => {
     if (isLoggedIn()) {
@@ -79,10 +77,6 @@ export const SearchPage: FC<ISearchPageProps> = () => {
       });
       setPortfolioItems(portfolioMapped);
     }
-  };
-
-  const searchOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.target.value);
   };
 
   const onAddToPortfolio = (e: any) => {
@@ -145,24 +139,25 @@ export const SearchPage: FC<ISearchPageProps> = () => {
     setLoading(false);
   };
 
-  const onKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      runSearch(search);
-    }
-  };
-
   return (
-    <div className='flex flex-col min-h-[calc(100vh-4rem)]'>
+    <div className='flex flex-col min-h-[calc(100vh-var(--navbar-height))]'>
       <div className='flex-2 bg-gray-50'>
         {/* First Column - CardList and Loading */}
         <div>
           <div className='min-w-[20rem] p-6 lg:pr-[22rem]'>
-            <Search
-              onChange={searchOnChange}
-              onKeyDown={onKeyDown}
-              search={search}
-            />
-            {loading ? (
+            {!query ? (
+              <div className='py-12 text-center'>
+                <div className='mb-4 flex justify-center text-7xl text-gray-400'>
+                  <IoSearchOutline />
+                </div>
+                <p className='text-xl font-medium text-gray-600'>
+                  Search for a company
+                </p>
+                <p className='mt-2 text-gray-500'>
+                  Use the search bar above to find stocks
+                </p>
+              </div>
+            ) : loading ? (
               <Loading />
             ) : serverError ? (
               <ErrorTile message={serverError} className='m-15' isWarning />
@@ -176,7 +171,7 @@ export const SearchPage: FC<ISearchPageProps> = () => {
         </div>
 
         {/* Second Column - Portfolio */}
-        <div className='hidden lg:block fixed top-16 right-0 h-[calc(100vh-4rem)] w-80 overflow-y-auto bg-white border-l border-gray-200'>
+        <div className='hidden lg:block fixed top-[var(--navbar-height)] right-0 h-[calc(100vh-var(--navbar-height))] w-80 overflow-y-auto bg-white border-l border-gray-200'>
           <div className='p-6'>
             <div className='mb-6 border-b border-gray-200 pb-3'>
               <h2 className='text-2xl font-bold text-gray-900'>Portfolio</h2>

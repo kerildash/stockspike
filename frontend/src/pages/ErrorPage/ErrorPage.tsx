@@ -78,8 +78,8 @@ export const ErrorPage: FC<IErrorPageProps> = () => {
         <div className='fixed top-0 right-0 left-0 z-50'>
           <Navbar />
         </div>
-        <main className='pt-16'>
-          <div className='flex flex-col h-[calc(100vh-4rem)]'>
+        <main className='pt-[var(--navbar-height)]'>
+          <div className='flex flex-col h-[calc(100vh-var(--navbar-height))]'>
             <div className='py-10 px-15 flex-1'>
               {isNotFound ? notFound : defaultError}
             </div>
