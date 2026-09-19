@@ -60,7 +60,7 @@ export const CompanyInfoPage: FC<ICompanyInfoPageProps> = () => {
       ) : error ? (
         <div className='flex flex-col min-h-[calc(100vh-var(--navbar-height))]'>
           <div className='flex-1'>
-            <ErrorTile message={error} className='m-15' isWarning />
+            <ErrorTile message={error} className='mx-5 md:mx-15 mt-5 md:mt-10' isWarning />
           </div>
           <Footer />
         </div>

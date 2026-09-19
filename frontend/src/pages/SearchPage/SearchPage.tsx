@@ -160,7 +160,7 @@ export const SearchPage: FC<ISearchPageProps> = () => {
             ) : loading ? (
               <Loading />
             ) : serverError ? (
-              <ErrorTile message={serverError} className='m-15' isWarning />
+              <ErrorTile message={serverError} className='mx-5 md:mx-15 mt-5 md:mt-10' isWarning />
             ) : (
               <CardList
                 companies={searchResponse}
