@@ -61,19 +61,19 @@ const Search: FC<SearchProps> = ({ onChange, onKeyDown, search, startSearch, sty
             onChange={onChange}
             onKeyDown={onKeyDown}
             placeholder="Search companies..."
-            className="w-full h-13 px-4 pl-10 placeholder-gray-600 text-gray-900 bg-transparent border-0 focus:outline-none"
+            className="w-full h-10 md:h-13 px-4 pl-10 placeholder-gray-600 text-gray-900 bg-transparent border-0 focus:outline-none"
           />
           <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
             <IoSearch className="w-4 h-4 text-gray-600" />
           </div>
         </div>
         <button
-            className='shrink-0 px-10 bg-gray-300 border-l-1 border-l-gray-600 hover:bg-gray-200 focus:outline-none text-gray-800 font-medium cursor-pointer transition-colors duration-200'
+            className='shrink-0 px-5 md:px-10 bg-gray-300 border-l-1 border-l-gray-600 hover:bg-gray-200 focus:outline-none text-gray-800 font-medium cursor-pointer transition-colors duration-200'
             type='button'
             onClick={startSearch}
           >
             Search
-          </button>
+        </button>
       </div>
     </section>
 
