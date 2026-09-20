@@ -1,11 +1,12 @@
-import { type ComponentType, type FC } from 'react';
+import { type FC, type ReactNode } from 'react';
+import type { IconType } from 'react-icons';
 import { IoWarningOutline } from 'react-icons/io5';
 
 interface IErrorTileProps {
   message: string;
   className?: string;
-  children?: React.ReactNode;
-  icon?: ComponentType<{ className?: string }>;
+  children?: ReactNode;
+  icon?: IconType;
   isWarning?: boolean;
 }
 
