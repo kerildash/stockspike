@@ -78,11 +78,9 @@ export const Portfolio: FC<IPortfolioProps> = ({
           }}
         >
           {showGuestWarning && (
-            <div className='shrink-0 px-6 pt-4'>
               <WarningPortfolio />
-            </div>
           )}
-          <div className='flex-1 overflow-y-auto overscroll-contain p-6'>
+          <div className='flex-1 overflow-y-auto overscroll-contain px-6 py-4'>
             <ListPortfolio
               portfolioItems={portfolioItems}
               onDeleteFromPortfolio={onDeleteFromPortfolio}
