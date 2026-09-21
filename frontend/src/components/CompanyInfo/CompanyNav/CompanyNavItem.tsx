@@ -18,17 +18,17 @@ export const CompanyNavItem: FC<ICompanyNavItemProps> = ({
       to={to}
       title={label}
       className={({ isActive }) =>
-        `group flex min-h-11 min-w-11 items-center justify-center gap-3 rounded-lg border px-3 py-2.5 text-sm font-medium whitespace-nowrap no-underline cursor-pointer transition-colors duration-200 md:min-w-0 md:justify-start ${
+        `group flex size-9 items-center justify-center gap-3 rounded-md border text-sm font-medium whitespace-nowrap no-underline cursor-pointer transition-colors duration-200 md:h-auto md:w-auto md:justify-start md:rounded-lg  md:px-3 md:py-2.5 ${
           isActive
             ? 'border-green-300 bg-green-100 text-gray-900'
-            : 'border-white bg-white text-gray-600 hover:border-green-300 hover:bg-green-50 hover:text-gray-900'
+            : 'border-transparent bg-transparent text-gray-600 hover:border-green-300 hover:bg-green-50 hover:text-gray-900 md:border-white md:bg-white'
         }`
       }
     >
       {({ isActive }) => (
         <>
           <Icon
-            className={`h-5 w-5 shrink-0 transition-colors duration-200 ${
+            className={`size-5 shrink-0 transition-colors duration-200 ${
               isActive ? 'text-green-700' : 'text-gray-400 group-hover:text-green-700'
             }`}
           />
