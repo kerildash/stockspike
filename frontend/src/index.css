@@ -5,6 +5,7 @@
 :root {
     --navbar-height: 3rem;
     --navbar-control-height: 2rem;
+    --portfolio-bar-height: 3rem;
 }
 
 html, body, #root {
