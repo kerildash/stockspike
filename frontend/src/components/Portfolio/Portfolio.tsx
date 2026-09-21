@@ -34,11 +34,11 @@ export const Portfolio: FC<IPortfolioProps> = ({
   }, [open]);
 
   const shellClassName = [
-    'fixed z-40 bg-white',
+    'fixed z-40',
     open
-      ? 'top-[var(--navbar-height)] inset-x-0 bottom-0 flex flex-col'
-      : 'top-[var(--navbar-height)] inset-x-0 h-[var(--portfolio-bar-height)]',
-    'lg:inset-x-auto lg:top-[var(--navbar-height)] lg:right-0 lg:bottom-auto lg:flex lg:h-[calc(100vh-var(--navbar-height))] lg:w-80 lg:flex-col lg:border-l lg:border-gray-200',
+      ? 'top-[var(--navbar-height)] inset-x-0 bottom-0 flex flex-col bg-white'
+      : 'top-[var(--navbar-height)] inset-x-0 h-[var(--portfolio-bar-height)] bg-white/70 backdrop-blur-sm backdrop-saturate-100',
+    'lg:inset-x-auto lg:top-[var(--navbar-height)] lg:right-0 lg:bottom-auto lg:flex lg:h-[calc(100vh-var(--navbar-height))] lg:w-80 lg:flex-col lg:border-l lg:border-gray-200 lg:bg-white lg:backdrop-blur-none',
   ].join(' ');
 
   return (
