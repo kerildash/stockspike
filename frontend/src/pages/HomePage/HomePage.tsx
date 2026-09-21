@@ -28,21 +28,23 @@ export const HomePage: FC<IHomePageProps> = () => {
     }
   };
 
+  const adaptiveText = 'text-2xl xl:text-4xl lg:text-3xl';
+
   return (
     <>
-    <div>
-      <div className='lg:w-full lg:max-w-340 min-h-[calc(100vh-var(--navbar-height)-3.5rem)] md:px-40 sm:px-20 px-10 py-5 lg:mx-auto flex items-center'>
+    <div className='flex min-h-[calc(100vh-var(--navbar-height))] flex-col'>
+      <div className='lg:w-full lg:max-w-340 flex-1 md:px-20 sm:px-20 px-10 py-5 lg:mx-auto flex items-center'>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-15 '>
           <div className='flex flex-col justify-between gap-6'>
 
-            <div className='font-bold text-4xl'>
+            <div className={`${adaptiveText} font-bold`}>
               <u>Track</u> stocks, <u>build</u> your portfolio and{' '}
               <u>explore</u> finansial metrics with{' '}
               <span className='text-blue-800'>StockSpike</span>
             </div>
 
             <div>
-              <div className='text-4xl pb-8'>Try right now, register later</div>
+              <div className={`${adaptiveText} pb-4 lg:pb-8`}>Try right now, register later</div>
               <Search
                 onChange={onChange}
                 onKeyDown={onKeyDown}
@@ -55,7 +57,7 @@ export const HomePage: FC<IHomePageProps> = () => {
 
           <div className='flex flex-col justify-between gap-10'>
             <div>
-              <div className='text-4xl pb-8'>Dive deeper with personal account</div>
+              <div className={`${adaptiveText} pb-4 lg:pb-8`}>Dive deeper with personal account</div>
               <StartLoginRegister />
             </div>
 
@@ -64,7 +66,7 @@ export const HomePage: FC<IHomePageProps> = () => {
       </div>
 
       <Footer />
-      </div>
+    </div>
     </>
   );
 };

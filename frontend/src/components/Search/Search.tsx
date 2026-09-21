@@ -29,13 +29,13 @@ const Search: FC<SearchProps> = ({ onChange, onKeyDown, search, startSearch, sty
 
   const navbarVersion =
     <form
-      className="w-full min-w-0"
+      className="flex h-[var(--navbar-control-height)] w-full min-w-0 items-stretch"
       onSubmit={(event) => {
         event.preventDefault();
         startSearch?.();
       }}
     >
-      <div className="relative">
+      <div className="relative h-full w-full">
         <input
           type="text"
           value={search}
@@ -43,7 +43,7 @@ const Search: FC<SearchProps> = ({ onChange, onKeyDown, search, startSearch, sty
           onKeyDown={onKeyDown}
           placeholder="Search companies..."
           aria-label="Search companies"
-          className="h-8 w-full rounded-full border border-gray-200 bg-gray-50 pl-9 pr-3 text-sm text-gray-900 placeholder:text-gray-400 outline-none transition-[background-color,border-color,box-shadow] duration-200 hover:border-gray-300 focus:border-blue-800/40 focus:bg-white"
+          className="box-border h-full w-full rounded-full border border-gray-200 bg-gray-50 py-0 pl-9 pr-3 text-sm leading-5 text-gray-900 placeholder:text-gray-400 outline-none transition-[background-color,border-color,box-shadow] duration-200 hover:border-gray-300 focus:border-blue-800/40 focus:bg-white"
         />
         <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
           <IoSearch className="h-4 w-4 text-gray-400" />
@@ -61,19 +61,19 @@ const Search: FC<SearchProps> = ({ onChange, onKeyDown, search, startSearch, sty
             onChange={onChange}
             onKeyDown={onKeyDown}
             placeholder="Search companies..."
-            className="w-full h-13 px-4 pl-10 placeholder-gray-600 text-gray-900 bg-transparent border-0 focus:outline-none"
+            className="w-full h-10 md:h-13 px-4 pl-10 placeholder-gray-600 text-gray-900 bg-transparent border-0 focus:outline-none"
           />
           <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
             <IoSearch className="w-4 h-4 text-gray-600" />
           </div>
         </div>
         <button
-            className='shrink-0 px-10 bg-gray-300 border-l-1 border-l-gray-600 hover:bg-gray-200 focus:outline-none text-gray-800 font-medium cursor-pointer transition-colors duration-200'
+            className='shrink-0 px-5 md:px-10 bg-gray-300 border-l-1 border-l-gray-600 hover:bg-gray-200 focus:outline-none text-gray-800 font-medium cursor-pointer transition-colors duration-200'
             type='button'
             onClick={startSearch}
           >
             Search
-          </button>
+        </button>
       </div>
     </section>
 

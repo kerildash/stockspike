@@ -4,7 +4,7 @@ import {
   useEffect,
 } from 'react';
 import { searchCompanies, type ICompanySearch } from '../../services/FinancialApiService';
-import { ListPortfolio } from '../../components/Portfolio/ListPortfolio/ListPortfolio';
+import { Portfolio } from '../../components/Portfolio/Portfolio';
 import CardList from '../../components/CardList/CardList';
 import Loading from '../../components/Loading/Loading';
 import { ErrorTile } from '../../components/ErrorTile/ErrorTile';
@@ -23,7 +23,6 @@ import {
 } from '../../services/GuestPortfolioService';
 import { useSearchParams } from 'react-router';
 import { Footer } from '../../components/Footer/Footer';
-import { WarningPortfolio } from '../../components/Portfolio/WarningPortfolio/WarningPortfolio';
 import { IoSearchOutline } from 'react-icons/io5';
 
 interface ISearchPageProps {}
@@ -142,51 +141,35 @@ export const SearchPage: FC<ISearchPageProps> = () => {
   return (
     <div className='flex flex-col min-h-[calc(100vh-var(--navbar-height))]'>
       <div className='flex-2 bg-gray-50'>
-        {/* First Column - CardList and Loading */}
-        <div>
-          <div className='min-w-[20rem] p-6 lg:pr-[22rem]'>
-            {!query ? (
-              <div className='py-12 text-center'>
-                <div className='mb-4 flex justify-center text-7xl text-gray-400'>
-                  <IoSearchOutline />
-                </div>
-                <p className='text-xl font-medium text-gray-600'>
-                  Search for a company
-                </p>
-                <p className='mt-2 text-gray-500'>
-                  Use the search bar above to find stocks
-                </p>
+        <Portfolio
+          portfolioItems={portfolioItems}
+          onDeleteFromPortfolio={onDeleteFromPortfolio}
+          showGuestWarning={!isLoggedIn()}
+        />
+
+        <div className='min-w-[20rem] p-6 lg:pr-[22rem]'>
+          {!query ? (
+            <div className='py-12 text-center'>
+              <div className='mb-4 flex justify-center text-7xl text-gray-400'>
+                <IoSearchOutline />
               </div>
-            ) : loading ? (
-              <Loading />
-            ) : serverError ? (
-              <ErrorTile message={serverError} className='m-15' isWarning />
-            ) : (
-              <CardList
-                companies={searchResponse}
-                onAddToPortfolio={onAddToPortfolio}
-              />
-            )}
-          </div>
-        </div>
-
-        {/* Second Column - Portfolio */}
-        <div className='hidden lg:block fixed top-[var(--navbar-height)] right-0 h-[calc(100vh-var(--navbar-height))] w-80 overflow-y-auto bg-white border-l border-gray-200'>
-          <div className='p-6'>
-            <div className='mb-6 border-b border-gray-200 pb-3'>
-              <h2 className='text-2xl font-bold text-gray-900'>Portfolio</h2>
-              {!isLoggedIn() && (
-                <div className='pt-2'>
-                  <WarningPortfolio />
-                </div>
-              )}
+              <p className='text-xl font-medium text-gray-600'>
+                Search for a company
+              </p>
+              <p className='mt-2 text-gray-500'>
+                Use the search bar above to find stocks
+              </p>
             </div>
-
-            <ListPortfolio
-              portfolioItems={portfolioItems}
-              onDeleteFromPortfolio={onDeleteFromPortfolio}
+          ) : loading ? (
+            <Loading />
+          ) : serverError ? (
+            <ErrorTile message={serverError} className='mx-5 md:mx-15 mt-5 md:mt-10' isWarning />
+          ) : (
+            <CardList
+              companies={searchResponse}
+              onAddToPortfolio={onAddToPortfolio}
             />
-          </div>
+          )}
         </div>
       </div>
 

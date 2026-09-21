@@ -10,10 +10,10 @@ export const WarningPortfolio: FC<IWarningPortfolioProps> = () => {
   if (dismissed) return null;
 
   return (
-    <div className='relative bg-yellow-50 rounded-lg border border-yellow-500 px-4 py-2 pr-10 flex items-center gap-4 justify-between'>
+    <div className='relative bg-yellow-50 rounded-lg border border-yellow-500 mt-4 mx-6 px-4 py-2 pr-10 flex items-center gap-4 justify-between'>
       <button
         type='button' //text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded-full transition-colors duration-200
-        className='absolute top-2 right-2 rounded-full p-1 text-amber-600/80 hover:bg-amber-100 hover:text-amber-800 transition-colors duration-200 ease-in-out cursor-pointer'
+        className='absolute right-2 rounded-full p-1 text-amber-600/80 hover:bg-amber-100 hover:text-amber-800 transition-colors duration-200 ease-in-out cursor-pointer'
         onClick={() => setDismissed(true)}
         aria-label='Dismiss warning'
       >

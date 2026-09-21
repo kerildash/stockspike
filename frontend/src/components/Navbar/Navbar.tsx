@@ -39,12 +39,18 @@ export const Navbar: FC = () => {
             <div className="flex w-full min-w-0 items-center gap-3 px-3 sm:gap-6 sm:px-8">
                 <Link
                     to="/"
-                    className="shrink-0 text-xl font-bold text-slate-900 whitespace-nowrap"
+                    aria-label="StockSpike"
+                    className="inline-flex h-[var(--navbar-control-height)] shrink-0 items-center"
                 >
-                    Stock<span className="text-blue-800">Spike</span>
+                    <span className="flex size-[var(--navbar-control-height)] items-center justify-center rounded-full bg-blue-800 text-xl font-bold leading-none text-white lg:hidden">
+                        S
+                    </span>
+                    <span className="hidden text-xl font-bold leading-none text-slate-900 whitespace-nowrap lg:inline">
+                        Stock<span className="text-blue-800">Spike</span>
+                    </span>
                 </Link>
-                <div className="flex min-w-0 flex-1 justify-center">
-                    <div className="w-full max-w-xl">
+                <div className="flex h-[var(--navbar-control-height)] min-w-0 flex-1 items-center justify-center">
+                    <div className="h-full w-full max-w-xl">
                         <Search
                             style="navbar"
                             search={search}
