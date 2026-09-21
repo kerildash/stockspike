@@ -11,7 +11,7 @@ export const BigTile: FC<IBigTileProps> = ({title, info}: IBigTileProps) => {
             <h5 className='text-sm font-medium text-gray-800 mb-1'>
               {title}
             </h5>
-            <span className='text-4xl font-light  break-words'>{info}</span>
+            <span className='text-3xl font-light break-words'>{info}</span>
           </div>
   );
 };
