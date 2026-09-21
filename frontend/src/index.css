@@ -6,6 +6,7 @@
     --navbar-height: 3rem;
     --navbar-control-height: 2rem;
     --portfolio-bar-height: 3rem;
+    --company-nav-width: 15rem;
 }
 
 html, body, #root {
